@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"path/filepath"
 	"regexp"
 
 	"github.com/mozilla-services/yaml"
@@ -301,6 +302,7 @@ func parseCreationRuleForFile(conf *configFile, filePath string, kmsEncryptionCo
 
 	var rule *creationRule
 
+	filePath = filepath.ToSlash(filePath)
 	for _, r := range conf.CreationRules {
 		if r.PathRegex == "" {
 			rule = &r
